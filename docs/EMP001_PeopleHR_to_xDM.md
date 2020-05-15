@@ -1,0 +1,31 @@
+# EMP001_PeopleHR_to_xDM 
+- Description: PeopleHR is master system for employee data. Records are used by other systems so it must processed by the MDM system (Semarchy xDM) before it can shared as a Golden record with other downstream systems.
+- Source system: PeopleHR
+- Target system: Semarchy xDM
+- Trigger: People HR schedule system
+- Pre-condition: Confidential data must be filtered out of the extract.
+- Post-condition: data must be encrypted while in transit.
+- Happy-path flow: file is picked-up on SFTP server and sent to xDM via REST API. All records are sent everyday. 1100 records.
+- Alternative flow: 
+    - PeopleHR sends CUD events real-time.
+    - Data is enriched in Azure Active Directory with email address
+- Error flow: 
+    - No file of the day is available at 8am. Raise ticket with People HR. 
+    - Csv file cannot be processed. (name, format issue or fails validation). Raise ticket with People HR. Process: place invalid file in rejected folder on SFTP server.
+    - Process or call to xDM API fails. Liaise with Azure and xDM SME. Process: if process cannot be restarted, process is terminated and file resubmitted as source from archive.
+    - Call to xDM API returns functional error. Liaise with business users. Business user modify the record in PeopleHR and a new file is generated. Or wait for next day.
+- Routing/subscription rules: n/a
+- Tracking: date-time of transfer, file name, number of records.
+- Frequency&Volume: once a day at 8am
+- Size: 10MB for 1100 records
+- ResponseTime: Process must be completed in 5 mins max.
+- Availability: 95%
+- Priority: high
+- Archiving: File are archived on SFTP Server for 1 week. Then moved to archive blob storage for 12 months.
+- Confidentiality: High
+- Validation: 
+    - Check file is not empty
+    - Check file format 
+    - Evaluate number of records (not < 90 % of previous integration)
+- Comments: these integration processes all records. Ideally only changed records should be transferred to MDM.
+- Etc… 
