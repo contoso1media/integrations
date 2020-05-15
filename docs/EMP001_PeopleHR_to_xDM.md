@@ -27,5 +27,6 @@
     - Check file is not empty
     - Check file format 
     - Evaluate number of records (not < 90 % of previous integration)
-- Comments: these integration processes all records. Ideally only changed records should be transferred to MDM.
-- Etc… 
+- Comments: these integration processes all records. Ideally only changed records should be transferred to MDM. 
+
+{technical diagram here}

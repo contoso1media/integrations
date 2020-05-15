@@ -8,6 +8,8 @@
 | EMP002_AAD_to_xDM | Azure AD employee details synchronised with xDM  | |
 | EMP003_xDM_to_VeEHS-QBase | Update VelocityEHS and QuickBase with employee Golden Record ||
 
+{high level diagram here}
+
 ## Project/Site
 
 | Integration name | Description | Feature |
@@ -16,10 +18,12 @@
 |PRO002_DataLake_to_xDM|DataLake synchronised with xDM||
 |PRO003_xDM_to_VeEHS-???|Project/Site golden record synchronised with VelocityEHS and ???||
 
+{high level diagram here}
+
 ## Incident
 
 | Integration name | Description | Feature |
 | ----------- | ----------- | ----------- |
 |INC001_VeEHS_to-QBase|Send Incident data to QuickBase||
 
-
+{high level diagram here}
